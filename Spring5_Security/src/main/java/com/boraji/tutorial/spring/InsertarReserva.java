@@ -2,7 +2,6 @@ package com.boraji.tutorial.spring;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -29,10 +28,10 @@ public class InsertarReserva extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int idusuario = Integer.parseInt(request.getParameter("idusuario"));
-		int iddestino = Integer.parseInt(request.getParameter("iddestino"));
-		int numeroplazas = Integer.parseInt(request.getParameter("numeroplazas"));
-		float preciototal = Integer.parseInt(request.getParameter("preciototal"));
+		int idUsuario = Integer.parseInt(request.getParameter("idUsuario"));
+		int idDestino = Integer.parseInt(request.getParameter("idDestino"));
+		int numPlazas = Integer.parseInt(request.getParameter("numPlazas"));
+		float precioTotal = Integer.parseInt(request.getParameter("precioTotal"));
 		
 	
 		try {
@@ -42,11 +41,11 @@ public class InsertarReserva extends HttpServlet {
 			
 			
 			//INSERTAR USUARIO
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO reservas(plazasdisponibles, destino, fecha, precio) VALUES (?, ?, ?, ?)");
-			ps.setInt(1, idusuario);
-			ps.setInt(2, iddestino);
-			ps.setFloat(4, numeroplazas);
-			ps.setFloat(4, preciototal);
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO reservas(idUsuario, idDestino, numPlazas, precioTotal) VALUES (?, ?, ?, ?)");
+			ps.setInt(1, idUsuario);
+			ps.setInt(2, idDestino);
+			ps.setFloat(4, numPlazas);
+			ps.setFloat(4, precioTotal);
 			ps.executeUpdate();
 			response.sendRedirect("ReservaHecha.jsp");
 			

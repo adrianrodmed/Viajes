@@ -1,13 +1,11 @@
 package com.boraji.tutorial.spring;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,10 +33,10 @@ public class InsertarUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String nombre = request.getParameter("nombre");
 		String mail = request.getParameter("mail");
-		String contra = request.getParameter("contra");
-		int telefono = Integer.parseInt(request.getParameter("telefono"));
+		String pass = request.getParameter("pass");
+		String nombre = request.getParameter("nombre");
+		String telf = request.getParameter("telf");
 		
 	
 		try {
@@ -55,11 +53,12 @@ public class InsertarUsuario extends HttpServlet {
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
 				//INSERTAR USUARIO
-				PreparedStatement ps2 = conn.prepareStatement("INSERT INTO usuarios(nombre, mail, contra, telefono) VALUES (?, ?, ?, ?)");
-				ps2.setString(1, nombre);
-				ps2.setString(2, mail);			
-				ps2.setString(3, contra);
-				ps2.setInt(4, telefono);
+				PreparedStatement ps2 = conn.prepareStatement("INSERT INTO usuarios(mail, pass, nombre, telf) VALUES (?, ?, ?, ?)");
+				
+				ps2.setString(1, mail);			
+				ps2.setString(2, pass);
+				ps2.setString(3, nombre);
+				ps2.setString(4, telf);
 				ps2.executeUpdate();
 				
 				response.sendRedirect("Index.jsp");

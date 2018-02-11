@@ -30,16 +30,16 @@ public class BorrarReservas extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int idreserva = Integer.parseInt(request.getParameter("idreserva"));
+		int idReserva = Integer.parseInt(request.getParameter("idReserva"));
 
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/viajes", "root", "");
 			PreparedStatement pstmt2;
-			pstmt2 = conn.prepareStatement("delete from reservas where idreserva=?");
+			pstmt2 = conn.prepareStatement("delete from reservas where idReserva=?");
 			
-			pstmt2.setInt(1, idreserva);
+			pstmt2.setInt(1, idReserva);
 			pstmt2.execute();
 			
 		} catch (ClassNotFoundException e) {

@@ -23,7 +23,7 @@
         
         
         <property name="java-output-path" value="/spring-security-jdbc-authentication-example/target/classes"/>
-        <property name="context-root" value="Spring5_Security"/>
+        <property name="context-root" value="Viajes"/>
                             
     
     

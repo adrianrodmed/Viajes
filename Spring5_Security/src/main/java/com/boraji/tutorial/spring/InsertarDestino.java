@@ -1,14 +1,10 @@
 package com.boraji.tutorial.spring;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,10 +31,15 @@ public class InsertarDestino extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String plazasdisponibles = request.getParameter("plazasdisponibles");
-		String destino = request.getParameter("destino");
-		Date fecha = request.getParameter("fecha");
+		
+		String nombre = request.getParameter("nombre");
+		String descripcion = request.getParameter("descripcion");
+		String descripcionCorta = request.getParameter("descripcionCorta");
 		float precio = Integer.parseInt(request.getParameter("precio"));
+		String categoria = request.getParameter("categoria");
+		int plazas = Integer.parseInt(request.getParameter("plazas"));
+		String fecha = request.getParameter("fecha");
+		String foto = request.getParameter("foto");
 		
 	
 		try {
@@ -48,11 +49,15 @@ public class InsertarDestino extends HttpServlet {
 			
 			
 			//INSERTAR USUARIO
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO destinos(plazasdisponibles, destino, fecha, precio) VALUES (?, ?, ?, ?)");
-			ps.setString(1, plazasdisponibles);
-			ps.setString(2, destino);			
-			ps.setDate(3, fecha);
+			PreparedStatement ps = conn.prepareStatement("INSERT INTO destinos(nombre, descripcion, descripcionCorta, precio, categoria, plazas, fecha, foto) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+			ps.setString(1, nombre);
+			ps.setString(2, descripcion);			
+			ps.setString(3, descripcionCorta);
 			ps.setFloat(4, precio);
+			ps.setString(5, categoria);
+			ps.setInt(6, plazas);
+			ps.setString(7, fecha);
+			ps.setString(8, foto);
 			ps.executeUpdate();
 			response.sendRedirect("Destinos.jsp");
 			

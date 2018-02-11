@@ -24,7 +24,7 @@ public class User {
   private boolean enabled;
 
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-  private Set<Authorities> authorities = new HashSet<>();
+  private Set<Administradores> authorities = new HashSet<>();
 
   public String getUsername() {
     return username;
@@ -50,11 +50,11 @@ public class User {
     this.enabled = enabled;
   }
 
-  public Set<Authorities> getAuthorities() {
+  public Set<Administradores> getAuthorities() {
     return authorities;
   }
 
-  public void setAuthorities(Set<Authorities> authorities) {
+  public void setAuthorities(Set<Administradores> authorities) {
     this.authorities = authorities;
   }
 }

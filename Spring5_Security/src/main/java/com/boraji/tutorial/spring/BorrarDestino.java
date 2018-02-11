@@ -2,7 +2,6 @@ package com.boraji.tutorial.spring;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -31,7 +30,7 @@ public class BorrarDestino extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		int iddestino = Integer.parseInt(request.getParameter("iddestino"));
+		int idDestino = Integer.parseInt(request.getParameter("idDestino"));
 		
 	
 		try {
@@ -41,8 +40,8 @@ public class BorrarDestino extends HttpServlet {
 			
 			
 			//BORRAR DESTINO
-			PreparedStatement ps = conn.prepareStatement("delete from destinos where iddestino=?");
-			ps.setInt(1, iddestino);
+			PreparedStatement ps = conn.prepareStatement("delete from destinos where idDestino=?");
+			ps.setInt(1, idDestino);
 			ps.executeUpdate();
 			response.sendRedirect("ReservaHecha.jsp");
 			
